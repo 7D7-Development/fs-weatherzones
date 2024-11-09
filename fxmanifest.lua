@@ -1,11 +1,13 @@
 fx_version 'cerulean'
 game 'gta5'
 
-author '⸸♱♥IDK_FORCE♥♱⸸#7611'
-description 'fs-weatherzones'
+author 'GhostFaceScripts'
+description 'GhostFace Weatherzones'
+version '1.0.0'
 
 client_scripts {
 	'config.lua',
-	"client.lua",
+	'client/client.lua',
 }
 
+lua54 'yes'

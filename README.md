@@ -1,6 +1,4 @@
-# fs-weatherzones
-
-fs-weatherzones made by ⸸♱♥IDK_FORCE♥♱⸸#7611
+# ghostface-weatherzones
 
 ```My Discord```
 - [Discord](https://discord.gg/UFng7DWnWP)
