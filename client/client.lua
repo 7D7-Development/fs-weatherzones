@@ -9,42 +9,42 @@ local function ResetWeather()
   SetWeatherTypeNowPersist(Config.DefaultWeather)
 end
 
-local weatherZones = {}
-for k, v in ipairs(Config.WeathersZones) do
-  weatherZones[k] = {
-    coord = v.coord,
-    radius = v.radius,
-    weathertype = v.weathertype,
-    timecycles = v.timecycles,
-    extratimecycle = v.extratimecycle
-  }
-end
-
 CreateThread(function()
   while true do
-    local ped = PlayerPedId()
-    local coord = GetEntityCoords(ped)
-    local n = #weatherZones
+      local ped = PlayerPedId()
+      local coord = GetEntityCoords(ped)
+      local inZone = false
 
-    for i = 1, n do
-      local zone = weatherZones[i]
-      if #(coord - zone.coord) < zone.radius then
-        local weathertype = zone.weathertype
-        SetWeatherTypeNow(weathertype)
-        SetWeatherTypeNowPersist(weathertype)
-        SetOverrideWeather(weathertype)
-        if zone.timecycles then
-          SetTimecycleModifier(zone.timecycles)
-          SetExtraTimecycleModifier(zone.extratimecycle)
-        end
-        while #(coord - zone.coord) < zone.radius do
-          coord = GetEntityCoords(ped)
-          Wait(1500)
-        end
-        ResetWeather()
-        Wait(500)
+      for _, zone in ipairs(Config.WeathersZones) do
+          local distance = #(coord - zone.coord)
+          
+          if distance < zone.radius then
+              inZone = true
+
+              SetWeatherTypeNow(zone.weathertype)
+              SetWeatherTypeNowPersist(zone.weathertype)
+              SetOverrideWeather(zone.weathertype)
+
+              if zone.timecycles then
+                  SetTimecycleModifier(zone.timecycles)
+                  if zone.extratimecycle then
+                      SetExtraTimecycleModifier(zone.extratimecycle)
+                  end
+              end
+
+              while #(GetEntityCoords(ped) - zone.coord) < zone.radius do
+                  Wait(1500)
+                  coord = GetEntityCoords(ped)
+              end
+
+              ResetWeather()
+              break
+          end
       end
-    end
-    Wait(1000)
+
+      if not inZone then
+          ResetWeather()
+          Wait(1000)
+      end
   end
 end)
