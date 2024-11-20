@@ -1,7 +1,8 @@
 Config = {}
-
+Config.Debug = true
+Config.DebugColor = 1
+Config.DebugAlpha = 111
 Config.DefaultWeather = 'CLEAR'
-
 Config.WeathersZones = {
     [1] = {
       coord = vector3(1317.0073242188, -559.03967285156, 72.170654296875),
@@ -15,4 +16,4 @@ Config.WeathersZones = {
       timecycles = 'int_extlight_small_fog',
       extratimecycle = 'heist_boat_norain'
     }
-  }  
+  }
