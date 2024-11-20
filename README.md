@@ -1,7 +1,6 @@
-# ghostface-weatherzones
-
 ## 7D7-Development EDIT - Debug Added to Config
 
+# ghostface-weatherzones
 ```My Discord```
 - [Discord](https://discord.gg/UFng7DWnWP)
 
