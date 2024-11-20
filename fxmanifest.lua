@@ -6,5 +6,5 @@ description 'GhostFace Weatherzones - Debug Config EDIT'
 version '1.0.0'
 client_scripts {
 	'config.lua',
-	'client/client.lua',
+	'client/main.lua',
 }
